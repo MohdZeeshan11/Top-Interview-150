@@ -1,0 +1,36 @@
+class Solution {
+    public boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<>();
+        long sum = 0;
+        while (true) {
+          
+            int count = countDigit(n);
+            sum = 0;
+            while (count != 0) {
+                long rem = n % 10;
+                sum = (long) rem * rem + sum;
+                n = n / 10;
+                count--;
+            }
+            n = (int)sum;
+            if(set.contains(n)){
+                break;
+            }
+            set.add(n);
+            if (sum == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int countDigit(long n) {
+        int count = 0;
+        while (n != 0) {
+            long rem = n % 10;
+            count++;
+            n = n / 10;
+        }
+        return count;
+    }
+}
