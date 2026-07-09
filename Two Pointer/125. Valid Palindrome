@@ -31,3 +31,50 @@ class Solution {
         return true;
     }
 }
+--------------------- optimize version ----------------------
+class Solution {
+    public boolean isPalindrome(String s) {
+        // s = s.toLowerCase();
+        // String result = "";
+        // for(int i = 0; i < s.length(); i++){
+        //     char ch = s.charAt(i);
+        //     int ascii = (int)ch;
+        //     if((ascii >= 48 && ascii <= 57) || (ascii >= 97 && ascii <= 122)  || (ascii >= 65 && ascii <= 90) ){
+        //         result = result + ch;
+        //     }
+        // }
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
+            if(Character.isLetterOrDigit(ch)){
+                result.append(Character.toLowerCase(ch));
+            }
+        }
+
+        if(result.length() == 0 || result.length() == 1) return true;
+
+        int left = 0;
+        int right = result.length()-1;
+
+        // Stack<Character> st = new Stack<>();
+        // for(int i = 0; i < result.length(); i++){
+        //     st.push(result.charAt(i));
+        // }
+        // for(int i = 0; i < result.length(); i++){
+        //     if(result.charAt(i) != st.peek()){
+        //         return false;
+        //     }
+        //     st.pop();
+        // }
+
+        while(right>left){
+            if(result.charAt(right) != result.charAt(left)){
+                return false;
+            }
+            right--;
+            left++;
+        }
+
+        return true;
+    }
+}
