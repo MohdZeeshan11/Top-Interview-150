@@ -3,7 +3,7 @@ class Solution {
         // Code here
         
         int j = 0;
-        int maxSum = 0; 
+        int maxSum = 0; // if all array elements are positive if numbers are negative then we can take maxSum = Integer.MIN_VALUE
         int sum = 0;
         int i = 0;
         while(i < arr.length){
