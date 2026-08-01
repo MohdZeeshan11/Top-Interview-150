@@ -1,0 +1,15 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        
+        // brute force
+        int maxPro = Integer.MIN_VALUE;
+        for(int i = 0; i < nums.length; i++){
+            int currPro = 1;
+            for(int j = i; j < nums.length; j++){
+                currPro  = currPro * nums[j];
+                maxPro = Math.max(maxPro, currPro);
+            }
+        }
+        return maxPro;
+    }
+}
