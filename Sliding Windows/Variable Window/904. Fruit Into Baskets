@@ -1,0 +1,31 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int left = 0;
+        int right = 0;
+        int maxCount = 0;
+
+
+        while (right < fruits.length) {
+
+            map.put(fruits[right], map.getOrDefault(fruits[right], 0) + 1);
+
+            while (map.size() > 2) {
+                int value = map.get(fruits[left]);
+
+                if (value == 1) {
+                    map.remove(fruits[left]);
+                } else {
+                    map.put(fruits[left], value - 1);
+                }
+                left++;
+            }
+            maxCount = Math.max(maxCount, right-left+1);
+            right++;
+        }
+
+        return maxCount;
+    }
+}
