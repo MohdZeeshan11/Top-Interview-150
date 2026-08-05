@@ -1,0 +1,31 @@
+class Solution {
+    public int maximumLength(String s) {
+        
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for(int i = 0; i < s.length(); i++){
+            for(int j = i; j < s.length(); j++){
+                map.put(s.substring(i, j+1), map.getOrDefault(s.substring(i, j+1), 0)+1);
+            }
+        }
+
+        int count = -1;
+        for(Map.Entry<String, Integer> entry : map.entrySet()){
+            if(entry.getValue() >= 3 && isValid(entry.getKey())){
+                count = Math.max(count, entry.getKey().length());
+            }
+        }
+        return count;
+    }
+
+    public boolean isValid(String s){
+        char firstChar = s.charAt(0);
+
+        for(int i = 1; i < s.length(); i++){
+            if(firstChar != s.charAt(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
